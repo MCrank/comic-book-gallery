@@ -9,7 +9,7 @@ using ComicBookGallery.Models;
 
 namespace ComicBookGallery.Controllers
 {
-    public class ComicBooksController: Controller
+    public class ComicBooksController : Controller
     {
         private ComicBookRepository _comicBookRepository = null;
 
@@ -17,6 +17,14 @@ namespace ComicBookGallery.Controllers
         {
             _comicBookRepository = new ComicBookRepository();
         }
+
+        public ActionResult Index()
+        {
+            var comicBooks = _comicBookRepository.GetComicBooks();
+
+            return View(comicBooks);
+        }
+
         public ActionResult Detail(int? id)
         {
             if (id == null)
